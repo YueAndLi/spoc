@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spoc.sys.spocsys.dao.CourseMapper" >
+  <resultMap id="BaseResultMap" type="com.spoc.sys.spocsys.entity.Course" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="course_name" property="courseName" jdbcType="VARCHAR" />
+    <result column="course_introduction" property="courseIntroduction" jdbcType="VARCHAR" />
+    <result column="course_info" property="courseInfo" jdbcType="VARCHAR" />
+    <result column="course_outline" property="courseOutline" jdbcType="VARCHAR" />
+    <result column="course_score_standard" property="courseScoreStandard" jdbcType="VARCHAR" />
+    <result column="course_video_introduction" property="courseVideoIntroduction" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="course_teachers" property="courseTeachers" jdbcType="VARCHAR" />
+    <result column="course_cover" property="courseCover" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, course_name, course_introduction, course_info, course_outline, course_score_standard, 
+    course_video_introduction, status, course_teachers, course_cover
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spoc.sys.spocsys.entity.Course" >
+    insert into course (id, course_name, course_introduction, 
+      course_info, course_outline, course_score_standard, 
+      course_video_introduction, status, course_teachers, 
+      course_cover)
+    values (#{id,jdbcType=INTEGER}, #{courseName,jdbcType=VARCHAR}, #{courseIntroduction,jdbcType=VARCHAR}, 
+      #{courseInfo,jdbcType=VARCHAR}, #{courseOutline,jdbcType=VARCHAR}, #{courseScoreStandard,jdbcType=VARCHAR}, 
+      #{courseVideoIntroduction,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, #{courseTeachers,jdbcType=VARCHAR}, 
+      #{courseCover,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spoc.sys.spocsys.entity.Course" >
+    insert into course
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="courseName != null" >
+        course_name,
+      </if>
+      <if test="courseIntroduction != null" >
+        course_introduction,
+      </if>
+      <if test="courseInfo != null" >
+        course_info,
+      </if>
+      <if test="courseOutline != null" >
+        course_outline,
+      </if>
+      <if test="courseScoreStandard != null" >
+        course_score_standard,
+      </if>
+      <if test="courseVideoIntroduction != null" >
+        course_video_introduction,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="courseTeachers != null" >
+        course_teachers,
+      </if>
+      <if test="courseCover != null" >
+        course_cover,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="courseName != null" >
+        #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null" >
+        #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseInfo != null" >
+        #{courseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseOutline != null" >
+        #{courseOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="courseScoreStandard != null" >
+        #{courseScoreStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="courseVideoIntroduction != null" >
+        #{courseVideoIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="courseTeachers != null" >
+        #{courseTeachers,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCover != null" >
+        #{courseCover,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spoc.sys.spocsys.entity.Course" >
+    update course
+    <set >
+      <if test="courseName != null" >
+        course_name = #{courseName,jdbcType=VARCHAR},
+      </if>
+      <if test="courseIntroduction != null" >
+        course_introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="courseInfo != null" >
+        course_info = #{courseInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="courseOutline != null" >
+        course_outline = #{courseOutline,jdbcType=VARCHAR},
+      </if>
+      <if test="courseScoreStandard != null" >
+        course_score_standard = #{courseScoreStandard,jdbcType=VARCHAR},
+      </if>
+      <if test="courseVideoIntroduction != null" >
+        course_video_introduction = #{courseVideoIntroduction,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="courseTeachers != null" >
+        course_teachers = #{courseTeachers,jdbcType=VARCHAR},
+      </if>
+      <if test="courseCover != null" >
+        course_cover = #{courseCover,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spoc.sys.spocsys.entity.Course" >
+    update course
+    set course_name = #{courseName,jdbcType=VARCHAR},
+      course_introduction = #{courseIntroduction,jdbcType=VARCHAR},
+      course_info = #{courseInfo,jdbcType=VARCHAR},
+      course_outline = #{courseOutline,jdbcType=VARCHAR},
+      course_score_standard = #{courseScoreStandard,jdbcType=VARCHAR},
+      course_video_introduction = #{courseVideoIntroduction,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      course_teachers = #{courseTeachers,jdbcType=VARCHAR},
+      course_cover = #{courseCover,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

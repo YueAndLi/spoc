@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.spoc.sys.spocsys.dao.CourseSortMapper" >
+  <resultMap id="BaseResultMap" type="com.spoc.sys.spocsys.entity.CourseSort" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sort_name" property="sortName" jdbcType="VARCHAR" />
+    <result column="sort_desc" property="sortDesc" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sort_name, sort_desc, create_time
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from course_sort
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from course_sort
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.spoc.sys.spocsys.entity.CourseSort" >
+    insert into course_sort (id, sort_name, sort_desc, 
+      create_time)
+    values (#{id,jdbcType=INTEGER}, #{sortName,jdbcType=VARCHAR}, #{sortDesc,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.spoc.sys.spocsys.entity.CourseSort" >
+    insert into course_sort
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sortName != null" >
+        sort_name,
+      </if>
+      <if test="sortDesc != null" >
+        sort_desc,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="sortName != null" >
+        #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortDesc != null" >
+        #{sortDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.spoc.sys.spocsys.entity.CourseSort" >
+    update course_sort
+    <set >
+      <if test="sortName != null" >
+        sort_name = #{sortName,jdbcType=VARCHAR},
+      </if>
+      <if test="sortDesc != null" >
+        sort_desc = #{sortDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.spoc.sys.spocsys.entity.CourseSort" >
+    update course_sort
+    set sort_name = #{sortName,jdbcType=VARCHAR},
+      sort_desc = #{sortDesc,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
